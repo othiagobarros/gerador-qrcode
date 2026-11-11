@@ -1,0 +1,215 @@
+:root {
+    /* Paleta Pastel & Vidro */
+    --primaria: #7c83fd;          /* Lavanda pastel vibrante */
+    --primaria-hover: #646cf5;
+    --sucesso: #5ec29f;           /* Verde menta pastel */
+    --sucesso-hover: #48ad8a;
+    --texto-principal: #2d3748;
+    --texto-secundario: #64748b;
+    --vidro-fundo: rgba(255, 255, 255, 0.58);
+    --vidro-borda: rgba(255, 255, 255, 0.75);
+    --input-fundo: rgba(255, 255, 255, 0.65);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    background: linear-gradient(135deg, #fdfbfb 0%, #f3e7e9 50%, #e3eeff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh; /* evita 'pulo' da barra do navegador no celular */
+    padding: 20px;
+    color: var(--texto-principal);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Formas coloridas suaves no fundo */
+.fundo-abstrato {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bolha {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.75;
+    animation: flutuar 12s infinite alternate ease-in-out;
+}
+
+.bolha-1 {
+    width: 340px;
+    height: 340px;
+    background: #fbcfe8; /* Rosa pastel */
+    top: 10%;
+    left: 18%;
+}
+
+.bolha-2 {
+    width: 380px;
+    height: 380px;
+    background: #c7d2fe; /* Azul lavanda pastel */
+    bottom: 10%;
+    right: 15%;
+    animation-delay: -4s;
+}
+
+.bolha-3 {
+    width: 280px;
+    height: 280px;
+    background: #fde68a; /* Pêssego/amarelo suave */
+    top: 50%;
+    left: 45%;
+    animation-delay: -8s;
+}
+
+@keyframes flutuar {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(25px, -25px) scale(1.06); }
+}
+
+/* Cartão estilo Vidro iOS */
+.container {
+    background: var(--vidro-fundo);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid var(--vidro-borda);
+    padding: 36px 32px;
+    border-radius: 28px;
+    box-shadow: 
+        0 20px 40px rgba(31, 38, 135, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    width: 100%;
+    max-width: 440px;
+}
+
+header { text-align: center; margin-bottom: 26px; }
+h1 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+p { font-size: 0.92rem; color: var(--texto-secundario); }
+
+.campo { margin-bottom: 16px; text-align: left; }
+label { font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 6px; color: #475569; }
+
+input[type="text"], select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--texto-principal);
+    background-color: var(--input-fundo);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: var(--primaria);
+    box-shadow: 0 0 0 4px rgba(124, 131, 253, 0.18);
+}
+
+.opcoes-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+}
+
+input[type="color"] {
+    width: 100%;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    padding: 4px;
+    background: var(--input-fundo);
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:active { transform: scale(0.97); }
+
+.btn-gerar {
+    background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+    color: white;
+    margin-top: 6px;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+}
+.btn-gerar:hover {
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35);
+    filter: brightness(1.03);
+}
+
+.resultado {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: aparecer 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.oculto { display: none; }
+
+.qr-wrapper {
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin-bottom: 16px;
+}
+
+.btn-baixar {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    color: white;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.22);
+}
+.btn-baixar:hover {
+    box-shadow: 0 10px 24px rgba(16, 185, 129, 0.32);
+    filter: brightness(1.03);
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(12px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* O QR Code nunca ultrapassa a largura do cartão em telas pequenas */
+.qr-wrapper canvas {
+    display: block;
+    max-width: 100%;
+    height: auto !important; /* mantém a proporção quadrada se a tela for estreita */
+    aspect-ratio: 1 / 1;
+}
+
+/* Celulares estreitos: o tamanho ocupa a linha toda, as duas cores ficam lado a lado */
+@media (max-width: 400px) {
+    .container { padding: 28px 20px; }
+    .opcoes-grid { grid-template-columns: 1fr 1fr; }
+    .opcoes-grid .campo:first-child { grid-column: 1 / -1; }
+}
+
+/* Respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+    .bolha, .resultado { animation: none; }
+}

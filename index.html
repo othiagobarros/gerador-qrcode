@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Configurações básicas de caracteres (acentos) e responsividade para celulares -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Code Gratuito</title>
+
+    <!-- Importação da fonte moderna 'Inter' do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Conecta este HTML ao seu arquivo de estilos (visual de vidro fosco) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Camada de fundo com formas pastéis desfocadas para dar profundidade atrás do vidro -->
+    <div class="fundo-abstrato">
+        <div class="bolha bolha-1"></div>
+        <div class="bolha bolha-2"></div>
+        <div class="bolha bolha-3"></div>
+    </div>
+
+    <!-- Cartão principal da aplicação (efeito Glassmorphism) -->
+    <main class="container">
+        
+        <!-- Cabeçalho com título e subtítulo -->
+        <header>
+            <h1>Gerador de QR Code</h1>
+            <p>Rápido, gratuito e sem validade</p>
+        </header>
+
+        <!-- Campo de entrada onde o usuário digita o conteúdo do QR Code -->
+        <div class="campo">
+            <label for="texto">Link, texto ou chave Pix:</label>
+            <input type="text" id="texto" placeholder="Cole seu link ou digite aqui..." autocomplete="off" />
+        </div>
+
+        <!-- Grade de opções de personalização (Tamanho e Cores) -->
+        <div class="opcoes-grid">
+            <div class="campo">
+                <label for="tamanho">Tamanho:</label>
+                <select id="tamanho">
+                    <option value="180">Pequeno (180px)</option>
+                    <option value="240" selected>Médio (240px)</option>
+                    <option value="320">Grande (320px)</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="cor-frente">Cor:</label>
+                <input type="color" id="cor-frente" value="#334155" />
+            </div>
+
+            <div class="campo">
+                <label for="cor-fundo">Fundo:</label>
+                <input type="color" id="cor-fundo" value="#ffffff" />
+            </div>
+        </div>
+
+        <!-- Botão principal que chama a função 'gerarQRCode()' no arquivo script.js -->
+        <button class="btn-gerar" onclick="gerarQRCode()">Gerar QR Code</button>
+
+        <!-- Área de resultado: começa oculta e só aparece após gerar o código -->
+        <div id="resultado" class="resultado oculto">
+            <!-- Caixa branca onde a biblioteca desenha o QR Code -->
+            <div id="area-qrcode" class="qr-wrapper"></div>
+            
+            <!-- Botão que chama a função 'baixarQRCode()' no arquivo script.js -->
+            <button id="btn-baixar" class="btn-baixar" onclick="baixarQRCode()">Baixar PNG</button>
+        </div>
+
+    </main>
+
+    <!-- 1º SCRIPT: Carrega a biblioteca local que faz a matemática e desenha o QR Code -->
+    <script src="qrcode.min.js"></script>
+
+    <!-- 2º SCRIPT: Carrega o seu código que lê os campos, valida e baixa a imagem -->
+    <script src="script.js"></script>
+
+</body>
+</html>
